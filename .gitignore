@@ -1,0 +1,151 @@
+# ==========================================
+# Dependencies
+# ==========================================
+
+node_modules/
+**/node_modules/
+
+
+# ==========================================
+# Environment Variables
+# ==========================================
+
+.env
+.env.local
+.env.development
+.env.development.local
+.env.test
+.env.test.local
+.env.production
+.env.production.local
+
+# Allow example environment file
+!.env.example
+
+
+# ==========================================
+# Build / Production Files
+# ==========================================
+
+dist/
+build/
+.next/
+out/
+coverage/
+
+# Frontend build outputs
+frontend/dist/
+frontend/build/
+
+# Backend build outputs
+backend/dist/
+backend/build/
+
+
+# ==========================================
+# Logs
+# ==========================================
+
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+lerna-debug.log*
+
+
+# ==========================================
+# Cache
+# ==========================================
+
+.cache/
+.parcel-cache/
+.vite/
+.eslintcache
+.npm/
+.yarn/cache/
+
+
+# ==========================================
+# Testing
+# ==========================================
+
+coverage/
+.nyc_output/
+
+
+# ==========================================
+# OS Files
+# ==========================================
+
+.DS_Store
+.DS_Store?
+Thumbs.db
+desktop.ini
+
+
+# ==========================================
+# IDE / Editors
+# ==========================================
+
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Keep VS Code extensions/settings if needed
+# !.vscode/extensions.json
+
+
+# ==========================================
+# Temporary Files
+# ==========================================
+
+*.tmp
+*.temp
+*.bak
+*.swp
+
+
+# ==========================================
+# React / Next.js
+# ==========================================
+
+.react/
+.next/
+.turbo/
+
+
+# ==========================================
+# TypeScript
+# ==========================================
+
+*.tsbuildinfo
+
+
+# ==========================================
+# Local Database / Storage
+# ==========================================
+
+*.sqlite
+*.sqlite3
+*.db
+
+
+# ==========================================
+# Secrets / Certificates
+# ==========================================
+
+*.pem
+*.key
+*.crt
+
+
+# ==========================================
+# Miscellaneous
+# ==========================================
+
+.Dockerfile.local
+docker-compose.override.yml
