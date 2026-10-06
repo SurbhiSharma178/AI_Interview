@@ -1,7 +1,14 @@
 import React from "react";
-
+import { Route, Routes } from "react-router-dom";
+import Home from "../src/pages/Home.jsx";
+import Auth from "../src/pages/Auth.jsx";
 const App = () => {
-  return <div></div>;
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="/auth" element={<Auth />} />
+    </Routes>
+  );
 };
 
 export default App;
