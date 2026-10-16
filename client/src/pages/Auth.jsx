@@ -3,28 +3,28 @@ import { BsRobot } from "react-icons/bs";
 import { IoSparkles } from "react-icons/io5";
 import { motion } from "motion/react";
 import { FcGoogle } from "react-icons/fc";
-import { linkWithCredential, signInWithPopup } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
 import { auth, provider } from "../utils/firebase";
-import axios from "axios";
-
-const handleGoogleAuth = async () => {
-  try {
-    const serverUrl = import.meta.env.BACKEND_URL;
-    const response = await signInWithPopup(auth, provider);
-    const name = response.user.displayName;
-    const email = response.user.email;
-    const result = await axios.post(
-      "http://localhost:8000/api/auth/google",
-      { name, email },
-      { withCredential: true },
-    );
-    console.log(result);
-  } catch (error) {
-    console.error(error);
-  }
-};
+import { publicApi } from "../api";
+import { useDispatch } from "react-redux";
+import { setUserData } from "../redux/userSlice";
 
 const Auth = () => {
+  const dispatch = useDispatch();
+
+  const handleGoogleAuth = async () => {
+    try {
+      const response = await signInWithPopup(auth, provider);
+      const name = response.user.displayName;
+      const email = response.user.email;
+      const result = await publicApi.auth.google({ name, email });
+      dispatch(setUserData(result.data));
+    } catch (error) {
+      dispatch(setUserData(null));
+      console.error(error);
+    }
+  };
+
   return (
     <div className="w-full min-h-screen bg-[#f3f3f3] flex items-center justify-center px-6 py-20">
       <motion.div
@@ -39,9 +39,7 @@ const Auth = () => {
               {...{
                 stroke: "black",
                 fill: "black",
-                backgroundColor: "black",
                 size: 24,
-                marginBottom: 18,
               }}
             />
           </div>

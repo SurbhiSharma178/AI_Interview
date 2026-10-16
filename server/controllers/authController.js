@@ -5,16 +5,19 @@ import User from "../models/userModel.js"
 export const googleAuth = async (req, res) => {
   try {
     const { name, email } = req.body;
-    const user = await User.findOne({ email: email })
+
+    let user = await User.findOne({ email: email })
+
     if (!user) {
       user = await User.create({
         name,
         email
       })
+      console.log("user created now token creation")
       const token = await genToken(user._id, user.email)
       res.cookie("token", token, {
-        http: true, secure: false,
-        samesite: "strict",
+        httpOnly: true, secure: false,
+        sameSite: "strict",
         maxAge: 7 * 24 * 60 * 60 * 1000
       })
       return res.status(201).json({
@@ -23,6 +26,18 @@ export const googleAuth = async (req, res) => {
         user: user
       })
     }
+    const token = await genToken(user._id, user.email)
+    res.cookie("token", token, {
+      httpOnly: true, secure: false,
+      sameSite: "strict",
+      maxAge: 7 * 24 * 60 * 60 * 1000
+    })
+    return res.status(200).json({
+      success: true,
+      message: "User Logged in successFully",
+      user: user
+    })
+
   } catch (error) {
     console.error(error);
     return res.status(500).json({
