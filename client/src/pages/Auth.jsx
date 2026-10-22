@@ -9,7 +9,7 @@ import { publicApi } from "../api";
 import { useDispatch } from "react-redux";
 import { setUserData } from "../redux/userSlice";
 
-const Auth = () => {
+const Auth = ({ isModel = false }) => {
   const dispatch = useDispatch();
 
   const handleGoogleAuth = async () => {
@@ -26,7 +26,7 @@ const Auth = () => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-[#f3f3f3] flex items-center justify-center px-6 py-20">
+    <div className="w-full min-h-absolute bg-[#f3f3f3] flex items-center justify-center rounded-3xl">
       <motion.div
         initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}

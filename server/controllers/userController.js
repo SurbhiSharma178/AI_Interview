@@ -4,7 +4,9 @@ import User from "../models/userModel.js"
 export const getUser = async (req, res) => {
   try {
     const userID = req.userID
+    // console.log(userID)
     const user = await User.findById(userID)
+    console.log(user)
     if (!user) {
       return res.status(404).json({
         success: false,

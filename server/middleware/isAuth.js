@@ -11,13 +11,14 @@ export const isAuth = (req, res, next) => {
     };
 
     const verifyUser = jwt.verify(token, process.env.JWT_SECRET)
+    // console.log("verifyUSer", verifyUser)
     if (!verifyUser) {
       return res.status(401).json({
         success: false,
         message: "Unauthorized User"
       })
     }
-    req.userID = verifyUser.userID
+    req.userID = verifyUser.id
     req.email = verifyUser.email
     next();
   } catch (error) {

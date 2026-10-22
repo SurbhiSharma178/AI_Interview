@@ -25,3 +25,11 @@ export const authenticatedApi = {
     getProfile: () => authenticatedApiClient.get("/user/profile"),
   },
 };
+
+export const logout = async () => {
+  try {
+    await publicApi.auth.logout();
+  } catch (error) {
+    console.error("Logout failed:", error);
+  }
+}
